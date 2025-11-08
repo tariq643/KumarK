@@ -72,6 +72,46 @@ public class GoogleOAQuestion52 {
 
     }
 
+    // asked in google ->
+    // find the maximum sum of two overlapping subarrays
+    // test case 8 -800 5 3 2 100
+    // output should be 8 + (100+5+3+2) = 118
+    // create two subarray sum -> prefix and suffix array
+    private void findMaximumSumOfTwoOverlappingSubArrayOptimal (long[] arr) {
+
+        int l = arr.length;
+
+        long[] prefixSum = new long[l]; // takes the maximum sum from 0 to n - 1
+        prefixSum[0] = arr[0];
+        for (int i = 1; i < l; i++) {
+            prefixSum[i] = Math.max(prefixSum[i - 1] + arr[i], arr[i]);
+        }
+
+        long[] suffixSum = new long[l]; // takes the maximum sum from n - 1 to 0
+        suffixSum[l - 1] = arr[l - 1];
+        for (int i = l - 2; i >= 0; i--) {
+            suffixSum[i] = Math.max(suffixSum[i + 1] + arr[i], suffixSum[i + 1]);
+        }
+
+//         take the sum of these two and find the maximum of the two
+//        long maximumSumOfNonOverlappingSubArray = Integer.MIN_VALUE;
+//        for (int i = 0; i < l; i++) {
+//            for (int j = i + 1; j < l; j++) {
+//                long tempSum = prefixSum[i] + suffixSum[i];
+//                maximumSumOfNonOverlappingSubArray = Math.max(tempSum, maximumSumOfNonOverlappingSubArray);
+//            }
+//        }
+
+        // instead of iterating over the two arrays create a suffix array with
+        // pre computed max sum
+        long[] maxSuffixSum = new long[l];
+        maxSuffixSum[l - 1] = suffixSum[l - 1];
+        for (int i = l - 2; i >= 0; i--) {
+            maxSuffixSum[i] = Math.max(maxSuffixSum[i + 1], suffixSum[i]);
+        }
+
+    }
+
 
     public static void main(String[] args) {
         GoogleOAQuestion52 obj = new GoogleOAQuestion52();
