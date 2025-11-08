@@ -112,6 +112,11 @@ public class GoogleOAQuestion52 {
 
     }
 
+    // actual question asked in google
+    // the second sub array should be in the strictly increasing order
+    // create another subarray largest size at index j
+
+
 
     public static void main(String[] args) {
         GoogleOAQuestion52 obj = new GoogleOAQuestion52();
