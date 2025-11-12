@@ -64,4 +64,47 @@ public class SessionThreeSearchInRotatedSortedArray {
         }
         return -1;
     }
+
+    /*
+        find the nth root of a number m using binary search
+        create a function to calc pow(x, n)
+        from takeUForward
+    */
+
+    public int nthRoot(int n, int m) {
+
+        int low = 1, high = m;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            int result = powFunc(mid, n);
+            if (result == m) {
+                return mid;
+            }
+            else if (result < m) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+        return -1;
+    }
+
+    // func(x,n)
+    private int powFunc (int a, int n) {
+        if (n < 0) {
+            n = -1 * n;
+            a = 1 / a;
+        }
+        int ans = 1;
+        while (n > 0) {
+            if (n % 2 == 1) {
+                ans = ans * a;
+            }
+            a = a * a;
+            n = n / 2;
+        }
+        return ans;
+    }
+
 }
