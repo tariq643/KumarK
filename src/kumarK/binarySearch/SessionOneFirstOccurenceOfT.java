@@ -10,9 +10,8 @@ public class SessionOneFirstOccurenceOfT {
         while (low <= high) {
             int mid = low + (high - low) / 2;
             if (arr[mid]) {
-
                 firstOccurence = mid;
-                high = mid + 1;
+                high = mid - 1;
             }
             else {
                 low = mid + 1;
@@ -21,10 +20,32 @@ public class SessionOneFirstOccurenceOfT {
         return firstOccurence;
     }
 
+    // search the element in sorted arrays
+    private int searchInRotatedSortedArray (int[] nums, int k) {
+
+        int low = 0, high = nums.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == k) {
+                return mid;
+            }
+            else if (nums[mid] < k) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+        return -1; // element not found in the array
+    }
+
     public static void main(String[] args) {
 
         SessionOneFirstOccurenceOfT obj = new SessionOneFirstOccurenceOfT();
         boolean[] arr = {false,false,false,false,false,false,true,true};
-        System.out.println(obj.sessionOneFirstOccurenceOfT(arr));
+//        System.out.println(obj.sessionOneFirstOccurenceOfT(arr));
+
+        int[] nums = {2,4,6,8,10,11,14};
+        System.out.println(obj.searchInRotatedSortedArray(nums, 2));
     }
 }
