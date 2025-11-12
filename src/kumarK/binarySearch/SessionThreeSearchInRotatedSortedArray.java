@@ -2,6 +2,7 @@ package kumarK.binarySearch;
 
 public class SessionThreeSearchInRotatedSortedArray {
 
+    // search in rotated sorted array
     public int search(int[] nums, int target) {
 
         int low = 0, high = nums.length - 1;
@@ -31,5 +32,10 @@ public class SessionThreeSearchInRotatedSortedArray {
             }
         }
         return -1;
+    }
+
+    // search element in sorted array
+    private int singleNonDuplicate (int[] nums) {
+
     }
 }
