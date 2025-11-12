@@ -39,6 +39,42 @@ public class SessionOneFirstOccurenceOfT {
         return -1; // element not found in the array
     }
 
+    // Find First and Last Position of Element in Sorted Array
+    public int[] searchRange(int[] nums, int target) {
+
+        int low = 0, high = nums.length - 1;
+        int firstOccurence = -1, lastOccurence = -1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                firstOccurence = mid;
+                high = mid - 1;
+            }
+            else if (nums[mid] < target) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+        low = 0;
+        high = nums.length - 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                lastOccurence = mid;
+                low = mid + 1;
+            }
+            else if (nums[mid] < target) {
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
+        return new int[]{firstOccurence, lastOccurence};
+    }
+
     public static void main(String[] args) {
 
         SessionOneFirstOccurenceOfT obj = new SessionOneFirstOccurenceOfT();
