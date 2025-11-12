@@ -36,7 +36,7 @@ public class SessionTwoUpperBound {
     so if arr[] = {100 200 500 550 600 800 1000 1500 1800] target = 1200
     so we need to find a number just greater than 1200
     low = 0 high = 8 mid = 4 arr[mid] = 600 but 600 ! > 1200 so all the numbers
-    to the left of 600 are of no good so ignore so low = mid + 1
+    to the left of 600 are of no good so ignore -> low = mid + 1
     so array now becomes [800 1000 1500 1800] target = 1200 mid = 1000
     so we again iterate
 */
