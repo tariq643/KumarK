@@ -5,7 +5,7 @@ public class SeassionKokoEatingBananas {
     public int minEatingSpeed(int[] piles, int h) {
 
         int low = 1, high = Integer.MIN_VALUE;
-        int result = -1, totalTime = 0;
+        int result = -1;
 
         for (int pile : piles) {
             if (pile > high) {
