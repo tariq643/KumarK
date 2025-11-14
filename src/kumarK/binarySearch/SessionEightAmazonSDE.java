@@ -68,15 +68,50 @@ public class SessionEightAmazonSDE {
         while (low <= high) {
 
             int mid = low + (high - low) / 2;
-            int l1 = this.firstOccurence(nums, nums[mid]);
-            int h1 = this.lastOccurence(nums, nums[mid]);
+            int l1 = this.firstOccurence(nums, mid, k);
+            int h1 = this.lastOccurence(nums, mid, k);
             if (Math.abs(h1 - l1) + 1 < k) {
                 return nums[mid];
             }
             else {
-
+                if ((h1 - low + 1) % k == 0) {
+                    // [low .... h1] part of the array is valid
+                    low = h1 + 1;
+                }
+                else {
+                    high = l1 - 1;
+                }
             }
         }
+        return -1;
+    }
+
+    private int firstOccurence (int[] nums, int x, int k) {
+
+        int low = x - k, high = x + k, length = nums.length, firstOccurence = -1;
+        if (low < 0) {
+            low = 0;
+        }
+        if (high > length - 1) {
+            high = length - 1;
+        }
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == nums[x]) {
+                firstOccurence = mid;
+                high = mid - 1;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
+        return firstOccurence;
+    }
+
+    private int lastOccurence (int[] nums, int x, int k) {
+
+        int lastOccurence = -1;
+        return lastOccurence;
     }
 
     public static void main(String[] args) {
