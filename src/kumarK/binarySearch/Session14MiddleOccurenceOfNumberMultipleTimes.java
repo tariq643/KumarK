@@ -1,5 +1,7 @@
 package kumarK.binarySearch;
 
+import java.util.ArrayList;
+
 public class Session14MiddleOccurenceOfNumberMultipleTimes {
 
 //    Q1. Find the middle occurrence of X in the given array
@@ -70,10 +72,38 @@ public class Session14MiddleOccurenceOfNumberMultipleTimes {
     }
 
 
+    /*
+    * You are given two unsorted arrays a[] and b[]. Both arrays may contain duplicate elements.
+    * For each element in a[], your task is to count how many elements in b[] are less than or equal to that element.
+    * use binary search concept of lower/upper bound to calculate this
+    *
+    * Examples:
+
+        Input: a[] = [4, 8, 7, 5, 1], b[] = [4, 48, 3, 0, 1, 1, 5]
+        Output: [5, 6, 6, 6, 3]
+        Explanation:
+        For a[0] = 4, there are 5 elements in b (4, 3, 0, 1, 1) that are ≤ 4.
+        For a[1] = 8 and a[2] = 7, there are 6 elements in b that are ≤ 8 and ≤ 7.
+        For a[3] = 5, there are 6 elements in b that are ≤ 5.
+        For a[4] = 1, there are 3 elements in b (0, 1, 1) that are ≤ 1.
+        Input: a[] = [10, 20], b[] = [30, 40, 50]
+        Output: [0, 0]
+        Explanation:
+        For a[0] = 10 and a[1] = 20, there are no elements in b that are less than or equal to 10 or 20. Hence, the output is [0, 0].
+        *
+    * */
+
+    public static ArrayList<Integer> countLessEq(int a[], int b[]) {
+        // code here
+        ArrayList<Integer> result = new ArrayList<>();
+        return result;
+    }
+
+
     public static void main(String[] args) {
 
         Session14MiddleOccurenceOfNumberMultipleTimes obj = new Session14MiddleOccurenceOfNumberMultipleTimes();
         int[] arr = {1,1,1,2,2,2,3,4,4,4,4};
-        System.out.println(obj.middleOccurenceOfNumberMultipleTimes(arr,1));
+        System.out.println(obj.middleOccurenceOfNumberMultipleTimes(arr,4));
     }
 }
