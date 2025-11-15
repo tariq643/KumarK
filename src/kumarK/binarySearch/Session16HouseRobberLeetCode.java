@@ -36,7 +36,10 @@ package kumarK.binarySearch;
 
 public class Session16HouseRobberLeetCode {
 
-    public int minCapability(int[] nums, int k) {
+    // my approach brute force
+    public int minCapabilityBruteForce(int[] nums, int k) {
+
+        int length = nums.length, countOfK, totalCapability = 0;
 
     }
 }
