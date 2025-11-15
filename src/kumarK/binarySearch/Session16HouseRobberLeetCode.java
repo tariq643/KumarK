@@ -34,12 +34,69 @@ package kumarK.binarySearch;
     the house at index 0 and 4. Return max(nums[0], nums[4]) = 2.
 */
 
+/*
+* for the example [2,3,5,9] can we rob k = 2 houses in such a way that the capability would be 9 ??
+* approach is pretty simple
+* first we use linear search brute force
+* */
+
+/*
+* for test case 2 7 9 3 1 for k = 2
+* the low capability = 1 and high capability = 9
+* so is it possible
+* */
+
+import java.util.Arrays;
+
 public class Session16HouseRobberLeetCode {
 
-    // my approach brute force
-    public int minCapabilityBruteForce(int[] nums, int k) {
+    // brute force using recursion
+    public int minCapability(int[] nums, int k) {
 
-        int length = nums.length, countOfK, totalCapability = 0;
-
+        int n = nums.length;
+        int[][] dp = new int[n+1][k+1];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(dp[i], -1);
+        }
+        return this.solvemeMemoizated(nums, 0 ,k, dp);
     }
+
+    // recursion helper function without memoization
+    private int solve (int[] nums, int i, int k) {
+        // base case
+        if (k == 0) {
+            return 0; // no more houses to be covered
+        }
+        // invalid path
+        if (i >= nums.length) {
+            return Integer.MAX_VALUE;
+        }
+        int pick = Math.max(this.solvemeMemoizated(nums, i+2, k-1), nums[i]);
+        int nonPick = this.solve(nums, i+1, k);
+        return Math.min(pick, nonPick);
+    }
+
+    // recursion helper function with memoization (dynamic programming)
+    private int solvemeMemoizated (int[] nums, int i, int k, int[][] dp) {
+        // base case
+        if (k == 0) {
+            return 0; // no more houses to be covered
+        }
+        // invalid path
+        if (i >= nums.length) {
+            return Integer.MAX_VALUE;
+        }
+
+        if (dp[i][k] != -1) {
+            return dp[i][k];
+        }
+
+        int pick = Math.max(this.solvemeMemoizated(nums, i+2, k-1, dp), nums[i]);
+        int nonPick = this.solvemeMemoizated(nums, i+1, k, dp);
+        return dp[i][k] = Math.min(pick, nonPick);
+    }
+
+    /*
+    * observation if in any question we need to maximize the
+    * */
 }
