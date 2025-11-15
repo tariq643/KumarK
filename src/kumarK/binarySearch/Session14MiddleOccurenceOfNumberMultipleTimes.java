@@ -1,6 +1,7 @@
 package kumarK.binarySearch;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Session14MiddleOccurenceOfNumberMultipleTimes {
 
@@ -93,9 +94,34 @@ public class Session14MiddleOccurenceOfNumberMultipleTimes {
         *
     * */
 
+    /*
+    * upper bound concept -> if x is present then it will point to a value > x
+    *
+    * */
+
     public static ArrayList<Integer> countLessEq(int a[], int b[]) {
         // code here
         ArrayList<Integer> result = new ArrayList<>();
+        Arrays.sort(b);
+        for (int ele : a) {
+            result.add(countLessEqHelper (ele, b));
+        }
+        return result;
+    }
+
+    private static int countLessEqHelper(int ele, int[] b) {
+
+        int low = 0, high = b.length - 1, result = high + 1;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (b[mid] > ele) {
+                result = mid;
+                high = mid - 1;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
         return result;
     }
 
@@ -105,5 +131,8 @@ public class Session14MiddleOccurenceOfNumberMultipleTimes {
         Session14MiddleOccurenceOfNumberMultipleTimes obj = new Session14MiddleOccurenceOfNumberMultipleTimes();
         int[] arr = {1,1,1,2,2,2,3,4,4,4,4};
         System.out.println(obj.middleOccurenceOfNumberMultipleTimes(arr,4));
+        int a[] = {1,2,3,4,7,9};
+        int b[] = {0,1,2,1,1,4};
+        countLessEq(a, b);
     }
 }
