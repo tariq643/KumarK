@@ -88,7 +88,7 @@ public class SessionEightAmazonSDE {
 
     private int firstOccurence (int[] nums, int x, int k) {
 
-        int low = x - k, high = x + k, length = nums.length, firstOccurence = -1;
+        int low = x - k, high = x + k, length = nums.length, firstOccurence = 0;
         if (low < 0) {
             low = 0;
         }
@@ -110,14 +110,30 @@ public class SessionEightAmazonSDE {
 
     private int lastOccurence (int[] nums, int x, int k) {
 
-        int lastOccurence = -1;
+        int low = x - k, high = x + k, length = nums.length, lastOccurence = length - 1;
+        if (low < 0) {
+            low = 0;
+        }
+        if (high > length - 1) {
+            high = length - 1;
+        }
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == nums[x]) {
+                lastOccurence = mid;
+                low = mid + 1;
+            }
+            else {
+                high = mid - 1;
+            }
+        }
         return lastOccurence;
     }
 
     public static void main(String[] args) {
         SessionEightAmazonSDE obj = new SessionEightAmazonSDE();
 //        int[] nums = {1,1,1,2,2,2,3,3};
-        int[] nums = {1,2,2};
-        System.out.println(obj.sessionEightAmazonSDEBruteSinglePass(nums,2));
+        int[] nums = {1,1,1,2,2,2,3,3};
+        System.out.println(obj.sessionEightAmazonSDEOptimalBinarySearch(nums, 3));
     }
 }
