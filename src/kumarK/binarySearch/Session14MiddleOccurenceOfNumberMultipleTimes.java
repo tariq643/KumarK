@@ -16,9 +16,22 @@ public class Session14MiddleOccurenceOfNumberMultipleTimes {
     * */
     public int middleOccurenceOfNumberMultipleTimes (int[] arr, int x) {
 
-        int low = 0, high = arr.length - 1, result = high;
         int firstOccurence = this.firstOccurence(arr, x);
         int lastOccurence = this.lastOccurence(arr, x);
+        int low = firstOccurence, high = lastOccurence, result = firstOccurence;
+        // find the element x in the range first occuerence and last occuerence
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (arr[mid] == x) {
+                result = mid;
+                low = mid + 1;
+            } else if (arr[mid] > x) {
+                high = mid - 1;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
         return result;
     }
 
@@ -48,9 +61,9 @@ public class Session14MiddleOccurenceOfNumberMultipleTimes {
                 lastOccurence = mid;
                 low = mid + 1;
             } else if (arr[mid] > target) {
-                low = mid + 1;
-            } else {
                 high = mid - 1;
+            } else {
+                low = mid + 1;
             }
         }
         return lastOccurence;
@@ -60,8 +73,7 @@ public class Session14MiddleOccurenceOfNumberMultipleTimes {
     public static void main(String[] args) {
 
         Session14MiddleOccurenceOfNumberMultipleTimes obj = new Session14MiddleOccurenceOfNumberMultipleTimes();
-        int[] arr = {1,1,1,2,2,3,4,4,4,4};
-        System.out.println(obj.firstOccurence(arr,4));
-        System.out.println(obj.lastOccurence(arr,4));
+        int[] arr = {1,1,1,2,2,2,3,4,4,4,4};
+        System.out.println(obj.middleOccurenceOfNumberMultipleTimes(arr,1));
     }
 }
