@@ -51,7 +51,7 @@ import java.util.Arrays;
 public class Session16HouseRobberLeetCode {
 
     // brute force using recursion
-    public int minCapability(int[] nums, int k) {
+    public int minCapabilityRecursion(int[] nums, int k) {
 
         int n = nums.length;
         int[][] dp = new int[n+1][k+1];
@@ -71,7 +71,7 @@ public class Session16HouseRobberLeetCode {
         if (i >= nums.length) {
             return Integer.MAX_VALUE;
         }
-        int pick = Math.max(this.solvemeMemoizated(nums, i+2, k-1), nums[i]);
+        int pick = Math.max(this.solve(nums, i+2, k-1), nums[i]);
         int nonPick = this.solve(nums, i+1, k);
         return Math.min(pick, nonPick);
     }
@@ -97,6 +97,51 @@ public class Session16HouseRobberLeetCode {
     }
 
     /*
-    * observation if in any question we need to maximize the
+    * observation if in any question
+    * we need to maximize the minumum
+    * or minimize the maximum go for binary search
+    * here answer is capability
+    *
+    * example for the array nums = [2 3 5 9] k = 2
+    * l = 2 r = 9 mid = 5 for k = 2 the capability should be equal to 5 ...
+    * so we should check that can I rob 2 houses and capability comes out to be 5
     * */
+
+    public int minCapability(int[] nums, int k) {
+
+        int length = nums.length;
+        int low = Integer.MAX_VALUE, high = Integer.MIN_VALUE;
+        for (int num : nums) {
+            if (num < low) {
+                low = num;
+            }
+            if (num > high) {
+                high = num;
+            }
+        }
+        int result = high;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (isPossible(nums, mid, k)) {
+                result = mid;
+                high = mid - 1;
+            }
+            else {
+                low = mid + 1;
+            }
+        }
+        return result;
+    }
+
+    private boolean isPossible(int[] nums, int mid, int k) {
+
+        int house = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] <= mid) {
+                house++;
+                i++; // skip adjacent house
+            }
+        }
+        return house >= k;
+    }
 }
