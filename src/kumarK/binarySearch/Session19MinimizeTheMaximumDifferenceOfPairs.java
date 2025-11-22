@@ -1,5 +1,7 @@
 package kumarK.binarySearch;
 
+import java.util.Arrays;
+
 public class Session19MinimizeTheMaximumDifferenceOfPairs {
 
 
@@ -15,31 +17,35 @@ public class Session19MinimizeTheMaximumDifferenceOfPairs {
 
     public int minimizeMax(int[] nums, int p) {
 
-        int low = Integer.MAX_VALUE, high = Integer.MIN_VALUE;
-        for (int num : nums) {
-            if (num < low) {
-                low = num;
-            }
-            if (num > high) {
-                high = num;
-            }
-        }
-        int result = -1;
+        int length = nums.length;
+        Arrays.sort(nums);
+        int low = 0, high = nums[length - 1] - nums[0], result = Integer.MAX_VALUE;
         while (low <= high) {
             int mid = low + (high - low) / 2;
-            if (isPossible(nums, mid, p)) {
+            if (isValid(nums, mid, p)) {
                 result = mid;
-                low = mid + 1;
+                high = mid - 1;
             }
             else {
-                high = mid - 1;
+                low = mid + 1;
             }
         }
         return result;
     }
 
-    private boolean isPossible(int[] nums, int mid, int p) {
+    private boolean isValid(int[] nums, int mid, int p) {
 
-
+        int i = 0, length = nums.length;
+        int countPairs = 0;
+        while (i < length - 1) {
+            if (nums[i + 1] - nums[i] <= mid) {
+                countPairs = countPairs + 1;
+                i = i + 2;
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        return countPairs >= p;
     }
 }
