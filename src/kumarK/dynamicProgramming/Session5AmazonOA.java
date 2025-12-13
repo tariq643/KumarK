@@ -33,9 +33,33 @@ example for the array 4 12 13 18 10 12
 dp(0) = 0
 but dp(1) = 12 - 4 = 8
 and dp(2) = dp(1) + arr(2) - arr(1) = 8 + 13 - 12 = 9
-....
+.... dp(3) = min(dp(2), dp(0) + arr(3) - arr(0)) = min(9, 18 -4) = 9
+
+calculate dp(n) finally
 
  */
 
 public class Session5AmazonOA {
+
+    private int session5AmazonOA (int[] cost) {
+
+        int length = cost.length;
+        if (length == 1) {
+            return cost[0];
+        }
+        int dp[] = new int[length];
+        dp[0] = 0;
+        dp[1] = Math.abs(cost[1] - cost[0]) + dp[0];
+        dp[2] = Math.abs(cost[2] - cost[1]) + dp[1];
+        for (int i = 3; i < length; i++) {
+            dp[i] = Math.min(Math.abs(cost[i] - cost[i - 1]) + dp[i - 1],
+                    Math.abs(cost[i] - cost[i - 3]) + dp[i - 3]);
+        }
+        return dp[length - 1];
+    }
+
+    public static void main(String[] args) {
+        Session5AmazonOA session5AmazonOA = new Session5AmazonOA();
+
+    }
 }
