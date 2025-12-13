@@ -31,4 +31,28 @@ package kumarK.dynamicProgramming;
  */
 
 public class Session2GeneralPattern {
+
+    public int nonAdjacent(int[] nums) {
+
+        int length = nums.length;
+        if (length == 1) {
+            return nums[length - 1];
+        }
+
+        int dp[] = new int[length + 1];
+        dp[0] = nums[0];
+        dp[1] = Math.max(dp[0], nums[1]);
+        for (int i = 2; i < length; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+        }
+        return dp[length - 1];
+    }
+
+    public static void main(String[] args) {
+
+        Session2GeneralPattern obj = new Session2GeneralPattern();
+        int nums[] = {1, 7, 16, 8};
+        System.out.println(obj.nonAdjacent(nums));
+
+    }
 }
