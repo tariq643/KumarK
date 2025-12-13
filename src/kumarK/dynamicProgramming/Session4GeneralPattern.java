@@ -41,7 +41,7 @@ public class Session4GeneralPattern {
     public int nonAdjacentTwoArrays(int[] a,int[] b) {
 
         int length = a.length;
-        int dp[] = new int[length];
+        int[] dp = new int[length];
 
         dp[0] = Math.max(a[0], b[0]);
         dp[1] = Math.max(dp[0], Math.max(a[1], b[1]));
@@ -52,10 +52,10 @@ public class Session4GeneralPattern {
         return dp[length - 1];
     }
 
-    public static void main() {
+    static void main() {
 
-        int a[] = {2,3,4,-8,2};
-        int b[] = {-5,8,3,1,-4};
+        int[] a = {2,3,4,-8,2};
+        int[] b = {-5,8,3,1,-4};
         Session4GeneralPattern obj = new Session4GeneralPattern();
         System.out.println(obj.nonAdjacentTwoArrays(a,b));
     }
