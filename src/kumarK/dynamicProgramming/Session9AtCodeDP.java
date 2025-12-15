@@ -229,9 +229,9 @@ public class Session9AtCodeDP {
         dpc[0] = c[0];
 
         if (n > 1) {
-            dpa[1] = a[1] + Math.max(dpb[0], dpc[0]);
-            dpb[1] = a[1] + Math.max(dpa[0], dpc[0]);
-            dpc[1] = a[1] + Math.max(dpa[0], dpb[0]);
+            dpa[1] = a[1] + Math.max(b[0], c[0]);
+            dpb[1] = b[1] + Math.max(a[0], c[0]);
+            dpc[1] = c[1] + Math.max(a[0], b[0]);
         }
 
         for (int i = 2; i < n; i++) {
@@ -245,12 +245,12 @@ public class Session9AtCodeDP {
 
     static void main() {
         Session9AtCodeDP obj = new Session9AtCodeDP();
-        long a[] = {10, 20 ,30};
-        long b[] = {40, 50 ,60};
-        long c[] = {70, 80 ,90};
-        /*long a[] = {10 ,40, 70};
+//        long a[] = {10, 20 ,30};
+//        long b[] = {40, 50 ,60};
+//        long c[] = {70, 80 ,90};
+        long a[] = {10 ,40, 70};
         long b[] = {20 ,50 ,80};
-        long c[] = {30 ,60 ,90};*/
+        long c[] = {30 ,60 ,90};
         System.out.println(obj.session9AtCodeDynamicProgramming(3,a,b,c));
     }
 }
