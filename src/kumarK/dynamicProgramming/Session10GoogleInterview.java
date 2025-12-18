@@ -127,6 +127,19 @@ Py https://ideone.com/mDK3UE
     dp[2][even] = 0
     dp[2][odd] = 1
 
+    dp[3][even] = 1
+    dp[3][odd] = 1
+
+    --------------------------------------
+    1 ....................... i
+
+    dp[i][even] = dp[i][even] if arr[i] is even
+
+    taking an extreme example .... .
+
+
+
+
 
 
  */
